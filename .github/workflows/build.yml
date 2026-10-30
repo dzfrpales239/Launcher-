@@ -16,6 +16,9 @@ jobs:
           gradle-version: 8.9
       - run: yes | sdkmanager --licenses || true
       - run: unzip -o ./*.zip
+      - run: |
+          sed -i -E 's/set(Accent|Columns|IconSize|Dim)\(/update\1(/g' app/src/main/java/com/example/launcher/MainActivity.kt
+        working-directory: Launcher
       - run: gradle assembleDebug
         working-directory: Launcher
       - uses: actions/upload-artifact@v4
